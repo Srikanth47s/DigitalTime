@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url(download.jpeg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+        }
+
+        #clock-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #clock {
+            font-family: monospace;
+            font-size: 5.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: rgb(187, 231, 64);
+            backdrop-filter: blur(4px);
+            background-color: hsla(0, 0%, 100%, 0.1);
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="clock-container">
+        <div id="clock">
+        </div>
+    </div>
+    <script>
+        function nowTime() {
+            const time = new Date();
+            let hour = time.getHours().toString().padStart(2,0);
+            let ampm = hour >= 12 ? "PM" : "AM" ;
+            hour = hour % 12 || 12;
+            const mints = time.getMinutes().toString().padStart(2,0);
+            const sec = time.getSeconds().toString().padStart(2,0);
+           // const milliSec = time.getMilliseconds().toString().padStart(2,0);
+            
+
+            const timer = hour + ":" + mints + ":" + sec +"  "+ampm;
+        
+            document.getElementById("clock").textContent = timer;
+        }
+        nowTime();
+
+        setInterval(nowTime, 100);
+    </script>
+</body>
+
+</html>
